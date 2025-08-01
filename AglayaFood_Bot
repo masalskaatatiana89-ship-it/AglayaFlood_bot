@@ -1,0 +1,40 @@
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+# Данные участников
+users = {
+    "Сирин": {
+        "id": "6800ad4c5bbb4f069fd2f335",
+        "birthday": "23 августа",
+        "joined": "31 июля 2025",
+        "novels": "ИПМН, СНР, ЛГиЗ"
+    },
+    "Фелония": {
+        "id": "64ed06d9e0fe753bd61178fa",
+        "birthday": "17 августа",
+        "joined": "31 июля 2025",
+        "novels": "РСА, ИПНМ, Теодора"
+    },
+    "Малек": {
+        "id": "68010a2c7083af0cb7e7a5bf",
+        "birthday": "2 февраля",
+        "joined": "1 августа 2025",
+        "novels": "ЯОНТ"
+    },
+    "Вкки": {
+        "id": "643c41241d99c428e6728f2d",
+        "birthday": "27 декабря",
+        "joined": "1 августа 2025",
+        "novels": "КЗТ, СН2"
+    }
+}
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "👋 Привет! Я бот AglayaFlood_bot. Используй команды, чтобы узнать информацию об участниках."
+    )
+
+async def id_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if context.args:
+        name = context.args[0]
+        user = users.get(name)
